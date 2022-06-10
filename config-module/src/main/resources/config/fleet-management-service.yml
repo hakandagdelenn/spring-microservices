@@ -1,0 +1,39 @@
+server:
+  port: 8502
+
+spring:
+  banner:
+    location: classpath:banner.txt
+  application:
+    name: fleet-management-service
+    api:
+      title: Fleet Management Application
+      version: 1.0.0
+      description: discover and manage fleet
+      base-package: com.fleetmanagement.fleetmanagementservice.api
+      contact-name: hakandagdelen
+      contact-email: hakandagdelennnn@gmail.com
+      swagger:
+        enable: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/fleetmanagement?useSSL=false
+    username: root
+    password: fleet-management-app
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    transaction-manager: org.springframework.jdbc.datasource.DataSourceTransactionManager
+    persistence-unit: fleet-management-service
+    hibernate:
+      ddl-auto: update
+      show-sql: false
+      format-sql: true
+  zipkin:
+    base-url: http://localhost:8504/
+
+eureka:
+  client:
+    instance:
+      hostName: localhost
+    serviceUrl:
+      defaultZone: http://localhost:8500/eureka/

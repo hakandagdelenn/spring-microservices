@@ -1,0 +1,34 @@
+#https://cloud.spring.io/spring-cloud-gateway/reference/html/
+server:
+  port: 8501
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: fleet-management-service
+          uri: lb://FLEET-MANAGEMENT-SERVICE
+          predicates:
+            - Path=/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+            - name: Hystrix
+              args:
+                name: fleet-management-service
+                fallbackUri: forward:/fallback/fleet-management
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8500/eureka/
+    register-with-eureka: false
+  instance:
+    preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

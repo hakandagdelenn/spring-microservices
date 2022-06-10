@@ -1,0 +1,10 @@
+config/logger/TestLoggerExtension.class
+service/BagServiceTest.class
+service/DeliveryPointServiceTest.class
+service/VehicleServiceTest.class
+model/DeliveryPointServiceScenarios.class
+model/PackageServiceScenarios.class
+config/mockito/MockitoExtension.class
+model/BagServiceScenarios.class
+model/VehicleServiceScenarios.class
+service/PackageServiceTest.class
